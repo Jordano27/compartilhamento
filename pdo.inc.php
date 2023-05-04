@@ -1,3 +1,3 @@
 <?php
     # pdo.inc.php
-    $pdo = new PDO('mysql:host=localhost;dbname=sistemat', 'root', '');
+    $pdo = new PDO('mysql:host=localhost;dbname=sistematwig', 'root', '');
