@@ -1,4 +1,4 @@
-{# recuperar_senha.html #}
+
 
 {% if msg %}
 <div style="color:red;background-color:yellow;border:1px solid blue;padding:5px;">
@@ -6,11 +6,25 @@
 </div>
 {% endif %}
 
-<form action="recuperar_senha.php" method="post">
-    <div>
-        <input type="text" name="username" placeholder="Digite seu username">
-    </div>
-    <div>
-        <input type="submit" value="Manda ver">
-    </div>
-</form>
+
+
+<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="//assets.locaweb.com.br/locastyle/2.0.6/stylesheets/locastyle.css">
+
+<div class="box-parent-login">
+	<div class="well bg-white box-login">
+		<h1 class="ls-login-logo" id="titu">Entrar</h1>
+		<form role="form" action="recuperar_senha.php" method="post"">
+			<fieldset>
+ 
+				<div class="form-group ls-login-user">
+					<label for="userLogin">Usuário</label>
+					<input class="form-control ls-login-bg-user input-lg" id="userLogin" type="text" aria-label="Usuário" name="username" placeholder="Digite seu username">
+                </div>
+
+				<input type="submit" value="Acessar" class="btn btn-primary btn-lg btn-block">
+				
+			</fieldset>
+		</form>
+	</div>
+</div>

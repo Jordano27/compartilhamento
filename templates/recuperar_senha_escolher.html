@@ -4,17 +4,40 @@
     {{ msg }}
 </div>
 {% endif %}
-<form action="recuperar_senha_escolher.php" method="post">
-    <input type="hidden" name="token" value="{{ token }}">
-    <div>
-        Digita a senha nova aí. E não vai errar...
-    </div>
-    <div>
-        <input type="password" name="senha" id="senha">
-        <input type="password" name="senha_confirma" id="senha_confirma">
-        <input type="button" id="olho" value="👁️">
-    </div>
-    <input type="submit" value="Gravar">
-</form>
 
+
+
+
+<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="//assets.locaweb.com.br/locastyle/2.0.6/stylesheets/locastyle.css">
+
+<div class="box-parent-login">
+	<div class="well bg-white box-login">
+		<h1 class="ls-login-logo" id="titu">Entrar</h1>
+		<form role="form" action="recuperar_senha_escolher.php" method="post">
+            
+    <div>
+			<fieldset>
+                <input type="hidden" name="token" value="{{ token }}">
+
+				<div class="form-group ls-login-password">
+					<label for="userPassword">Senha</label>
+					<input class="form-control ls-login-bg-password input-lg" id="userPassword" type="password" name="senha" id="senha" aria-label="Senha" placeholder="Senha">
+                    <input type="button" id="olho" value="👁️">
+				</div>
+				<div class="form-group ls-login-password">
+					<label for="userPassword">Senha</label>
+					<input class="form-control ls-login-bg-password input-lg" id="userPassword" type="password"  name="senha_confirma" id="senha_confirma" aria-label="Senha" placeholder="Senha">
+                    <input type="button" id="olho" value="👁️">
+                </div>
+
+ 
+				
+				<input type="submit" value="Acessar" class="btn btn-primary btn-lg btn-block">
+				
+ 
+			</fieldset>
+		</form>
+	</div>
+</div>
 <script src="js/olho.js"></script>

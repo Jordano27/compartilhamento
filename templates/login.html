@@ -7,18 +7,33 @@
     Senha alterada com sucesso. Vê se não esquece agora, imbecil. 🥰🥰🥰
 {% endif %}
 
-<form action="login_verifica.php" method="post">
-    <div>
-        <input type="text" name="user" placeholder="Usuário">
-    </div>
-    <div>
-        <input type="password" name="pass" placeholder="Senha">
-    </div>
-    <div>
-        <input type="submit" value="Acessar">
-    </div>
-</form>
+<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="//assets.locaweb.com.br/locastyle/2.0.6/stylesheets/locastyle.css">
 
-<div>
-    <a href="recuperar_senha.php">Esqueci minha senha</a>
+<div class="box-parent-login">
+	<div class="well bg-white box-login">
+		<h1 class="ls-login-logo" id="titu">Entrar</h1>
+		<form role="form" action="login_verifica.php" method="post">
+			<fieldset>
+ 
+				<div class="form-group ls-login-user">
+					<label for="userLogin">Usuário</label>
+					<input class="form-control ls-login-bg-user input-lg" id="userLogin" type="text" name="user" aria-label="Usuário" placeholder="Usuário">
+				</div>
+ 
+				<div class="form-group ls-login-password">
+					<label for="userPassword">Senha</label>
+					<input class="form-control ls-login-bg-password input-lg" id="userPassword" type="password" name="pass" aria-label="Senha" placeholder="Senha">
+				</div>
+ 
+				<a href="recuperar_senha.php" class="ls-login-forgot">Esqueci minha senha</a>
+ 
+				<input type="submit" value="Acessar" class="btn btn-primary btn-lg btn-block">
+				<p class="txt-center ls-login-signup">Não possui um usuário na Locaweb?
+					<a href="novo_usuario.php">Cadastre-se agora</a>
+				</p>
+ 
+			</fieldset>
+		</form>
+	</div>
 </div>
