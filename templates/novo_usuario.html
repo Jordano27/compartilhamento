@@ -1,0 +1,14 @@
+{% include "inc/head.html" %}
+
+<form method="post" action="novo_usuario_gravar.php">
+    <div><input type="text" name="user" placeholder="Usuário"></div>
+    <div><input type="password" name="pass" placeholder="Senha"></div>
+
+    <div>
+        <label><input type="checkbox" name="admin"> Admin</label>
+    </div>
+
+    <div><input type="submit" value="Gravar"></div>
+</form>
+
+{% include "inc/foot.html" %}

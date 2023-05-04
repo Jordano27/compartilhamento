@@ -1,0 +1,24 @@
+{# templates/login.html #}
+{% if erro == 1 %}
+    Usuário ou senha inválidos! 😯
+{% elseif erro == 2 %}
+    Você está tentando acessar uma página restrita, safadinho! 😒
+{% elseif erro == 3 %}
+    Senha alterada com sucesso. Vê se não esquece agora, imbecil. 🥰🥰🥰
+{% endif %}
+
+<form action="login_verifica.php" method="post">
+    <div>
+        <input type="text" name="user" placeholder="Usuário">
+    </div>
+    <div>
+        <input type="password" name="pass" placeholder="Senha">
+    </div>
+    <div>
+        <input type="submit" value="Acessar">
+    </div>
+</form>
+
+<div>
+    <a href="recuperar_senha.php">Esqueci minha senha</a>
+</div>

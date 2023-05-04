@@ -1,0 +1,24 @@
+{# templates/usuario_ver.html #}
+{% extends "inc/base.html" %}
+
+{% block conteudo %}
+	<p>Username:
+		{{usuario.username}}</p>
+
+	<form action="/usuario_atualizar" method="post">
+        <input type="hidden" name="id" value="{{usuario.id}}">
+		<div>
+        Nome:
+			<input type="text" name="nome" value="{{usuario.nome}}">
+		</div>
+		<div>
+        E-mail:
+			<input type="text" name="email" value="{{usuario.email}}">
+		</div>
+		<div>
+        Username:
+			<input type="text" name="username" value="{{usuario.username}}">
+		</div>
+        <input type="submit" value="Atualizar">
+	</form>
+{% endblock %}
