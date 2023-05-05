@@ -48,7 +48,7 @@ CREATE TABLE `usuarios` (
   `senha` varchar(255) NOT NULL,
   `admin` tinyint(4) NOT NULL DEFAULT 0,
   `ativo` tinyint(4) NOT NULL DEFAULT 0,
-  `recuperar_token` varchar(255) DEFAULT NULL
+  `recuperar_token` varchar(255) DEFAULT NULL,
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
