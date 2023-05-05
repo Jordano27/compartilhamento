@@ -9,9 +9,9 @@
 
     // Rotina de POST - Recuperar senha
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $username = $_POST['username'] ?? false;
+        $username = $_POST['nome'] ?? false;
 
-        $sql = $pdo->prepare('SELECT * FROM usuarios WHERE username = ?');
+        $sql = $pdo->prepare('SELECT * FROM usuarios WHERE nome = ?');
         $sql->execute([$username]);
 
         // Se encontrou usuário....
@@ -23,11 +23,11 @@
             $token = uniqid(null, true) . bin2hex(random_bytes(16));
             
             // Grava o token para o usuário no banco
-            $sql = $pdo->prepare('UPDATE usuarios SET recupera_token = :token WHERE id = :id_usr');
+            $sql = $pdo->prepare('UPDATE usuarios SET recuperar_token = :token WHERE idUsuario = :id_usr');
           
             $sql->execute([
                 ':token' => $token,
-                ':id_usr' => $usuario['id'],
+                ':id_usr' => $usuario['idUsuario'],
             ]);
             $msg = 'Vai lá olhar o teu e-mail';
             
@@ -38,7 +38,7 @@
             die;
 
         } else {
-            $msg = 'Usuário não encontrado. Tu bebeu?';
+            $msg = 'Usuário não encontrado.';
         }
     }
 

@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Tratamento para o caso de senha falsa
     // ....
     if ($password == $password_confi) {
-        $sql = $pdo->prepare('UPDATE usuarios SET senha = :senha, recupera_token = NULL WHERE recupera_token = :token');
+        $sql = $pdo->prepare('UPDATE usuarios SET senha = :senha, recuperar_token = NULL WHERE recuperar_token = :token');
         $sql->execute([
             ':senha' => password_hash($password, PASSWORD_BCRYPT),
             ':token' => $token,
@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 }
 
-$sql = $pdo->prepare('SELECT * FROM usuarios WHERE recupera_token = ?');
+$sql = $pdo->prepare('SELECT * FROM usuarios WHERE recuperar_token = ?');
 $sql->execute([$token]);
 
 if ($sql->rowCount() == 1) {

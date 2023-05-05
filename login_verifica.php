@@ -2,11 +2,11 @@
     # login_verifica.php
     require('pdo.inc.php');
 
-    $user = $_POST['user'];
+    $user = $_POST['nome'];
     $pass = $_POST['pass'];
 
     // Cria a consulta e aguarda os dados
-    $sql = $pdo->prepare('SELECT * FROM usuarios WHERE username = :usr AND ativo = 1');
+    $sql = $pdo->prepare('SELECT * FROM usuarios WHERE nome = :usr ');
 
     // Adiciona os dados na consulta
     $sql->bindParam(':usr', $user);
@@ -31,7 +31,7 @@
         $_SESSION['user'] = $user->nome;
         
         // Redireciona o usuário
-        header('location:boasvindas.php');
+        header('location:usuarios.php');
         die;
     } else {
         // Falha no login

@@ -3,24 +3,28 @@
     require('models/Model.php');
     require('models/Usuario.php');
 
-    $user = $_POST['user'] ?? false;
-    $pass = $_POST['pass'] ?? false;
-
-    if (!$user || !$pass) {
+    $nome = $_POST['nome'] ?? false;
+    $email = $_POST['email'] ?? false;
+    $senha = $_POST['senha'] ?? false;
+echo ($nome);
+echo ($email);
+echo ($senha);
+    if (!$nome || !$email || !$senha) {
         header('location:novo_usuario.php');
         die;
     }
 
-    $pass = password_hash($pass, PASSWORD_BCRYPT);
+    $senha = senhaword_hash($senha, senhaWORD_BCRYPT);
 
     $usr = new Usuario();
     $usr->create([
-        'username' => $user,
-        'senha' => $pass,
-        'ativo' => 1,
+        'nome' => $nome,
+        'email' => $email,
+        'senha' => $senha,
+       
     ]);
 
-    header('location:usuarios.php');
+    header('location:login.php');
 
 
 
