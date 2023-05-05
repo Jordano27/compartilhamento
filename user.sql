@@ -25,4 +25,4 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`idUsuario`, `nome`,`email`, `senha`, `idDocumento`) VALUES
 (1, 'Mateus', 'mateus@email.com', 'senha', 1),
-(2, 'Jordano', 'jordano@email.com', 'outrasenha', 3)
+(2, 'Jordano', 'jordano@email.com', 'outrasenha', 2)
