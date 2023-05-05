@@ -20,9 +20,10 @@ CREATE TABLE `usuarios` (
   `email` varchar(200) NOT NULL,
   `senha` varchar(200) NOT NULL,
   `idDocumento` int(11) NOT NULL,
+  `recuperar_token` varchar(255) DEFAULT NULL
   CONSTRAINT `fk_usuarios_documentos` FOREIGN KEY (`idDocumento`) REFERENCES `documentos` (`idDocumento`)
 );
 
 INSERT INTO `usuarios` (`idUsuario`, `nome`,`email`, `senha`, `idDocumento`) VALUES
 (1, 'Mateus', 'mateus@email.com', 'senha', 1),
-(2, 'Jordano', 'jordano@email.com', 'outrasenha', 2)
+(2, 'Jordano', 'jordano@email.com', 'outrasenha', 2);
