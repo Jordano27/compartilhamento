@@ -1,14 +1,36 @@
 {% include "inc/head.html" %}
 
-<form method="post" action="novo_usuario_gravar.php">
-    <div><input type="text" name="user" placeholder="Usuário"></div>
-    <div><input type="password" name="pass" placeholder="Senha"></div>
 
-    <div>
-        <label><input type="checkbox" name="admin"> Admin</label>
-    </div>
+<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="//assets.locaweb.com.br/locastyle/2.0.6/stylesheets/locastyle.css">
 
-    <div><input type="submit" value="Gravar"></div>
-</form>
+<div class="box-parent-login">
+	<div class="well bg-white box-login">
+		<h1 class="ls-login-logo" id="titu">cadastrar</h1>
+		<form role="form" method="post" action="novo_usuario_gravar.php">
+			<fieldset>
+ 
+				<div class="form-group ls-login-user">
+					<label for="userLogin">Usuário</label>
+					<input class="form-control ls-login-bg-user input-lg" id="userLogin" type="text" name="user" aria-label="Usuário" placeholder="Usuário">
+				</div>
+ 
+				<div class="form-group ls-login-password">
+					<label for="userPassword">Senha</label>
+					<input class="form-control ls-login-bg-password input-lg" id="userPassword" type="password" name="pass" aria-label="Senha" placeholder="Senha">
+				</div>
+
+    
+
+ 
+				
+				<input type="submit" value="Gravar" class="btn btn-primary btn-lg btn-block">
+				
+ 
+			</fieldset>
+		</form>
+	</div>
+</div>
 
 {% include "inc/foot.html" %}
+

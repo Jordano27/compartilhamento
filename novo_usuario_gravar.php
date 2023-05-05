@@ -5,7 +5,6 @@
 
     $user = $_POST['user'] ?? false;
     $pass = $_POST['pass'] ?? false;
-    $admin = isset($_POST['admin']);
 
     if (!$user || !$pass) {
         header('location:novo_usuario.php');
@@ -18,7 +17,6 @@
     $usr->create([
         'username' => $user,
         'senha' => $pass,
-        'admin' => $admin,
         'ativo' => 1,
     ]);
 
