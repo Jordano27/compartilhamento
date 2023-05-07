@@ -2,7 +2,7 @@
     # recuperar_senha.php
     require('twig_carregar.php');
     require('pdo.inc.php');
-    require('mailer.inc.php');
+    
 
     // Mensagem de erro
     $msg = '';

@@ -6,15 +6,14 @@
     $nome = $_POST['nome'] ?? false;
     $email = $_POST['email'] ?? false;
     $senha = $_POST['senha'] ?? false;
-echo ($nome);
-echo ($email);
-echo ($senha);
+
+    
     if (!$nome || !$email || !$senha) {
         header('location:novo_usuario.php');
         die;
     }
 
-    $senha = senhaword_hash($senha, senhaWORD_BCRYPT);
+    $senha = password_hash($senha, PASSWORD_BCRYPT);
 
     $usr = new Usuario();
     $usr->create([

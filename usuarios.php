@@ -7,8 +7,8 @@
     require('models/Usuario.php');
 
     $usr = new Usuario();
-    $usuarios = $usr->getAll(['ativo' => 1]);
-
+    $usuarios = $usr->getAll();
+    
     echo $twig->render('usuarios.html', [
         'usuarios' => $usuarios,
     ]);

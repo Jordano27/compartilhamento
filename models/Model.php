@@ -6,7 +6,7 @@ class Model
     // Não é a forma mais indicada de armazenar usuário e senha
     private $driver = 'mysql';
     private $host = 'localhost';
-    private $dbname = 'sistematwig';
+    private $dbname = 'usuario';
     private $port = '3306';
     private $user = 'root';
     private $password = null;
@@ -25,16 +25,15 @@ class Model
         $this->conex = new PDO("{$this->driver}:host={$this->host};port={$this->port};dbname={$this->dbname}", $this->user, $this->password);
     }
 
-    public function getAll($where = false, $where_glue = 'AND')
+    public function getAll()
     {
-        if ($where) {
-            $where_sql = $this->where_fields($where, $where_glue);
-
-            $sql = $this->conex->prepare("SELECT * FROM {$this->table} WHERE {$where_sql}");
-            $sql->execute($where);
-        } else {
-            $sql = $this->conex->query("SELECT * FROM {$this->table}");
-        }
+        $sql = $this->conex->query("
+            SELECT u.*, d.*
+            FROM {$this->table} AS u
+            JOIN documentos AS d ON u.idDocumento = d.idDocumento
+            WHERE u.nome = '{$_SESSION['user']}'
+        ");   
+        
         return $sql->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -49,7 +48,7 @@ class Model
     public function create($data)
     {
         // Inicia a construção do SQL
-        $sql = "INSERT INTO {$this->table}";
+        $sql = "INSERT INTO {$this->table} ";
 
         $sql_fields = $this->sql_fields($data);
 
@@ -63,6 +62,9 @@ class Model
         $insert->execute($data);
 
         return $insert->errorInfo();
+
+        
+
     }
 
     public function update($data, $id)

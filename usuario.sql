@@ -19,11 +19,13 @@ CREATE TABLE `usuarios` (
   `nome` varchar(200) NOT NULL,
   `email` varchar(200) NOT NULL,
   `senha` varchar(200) NOT NULL,
-  `idDocumento` int(11) NOT NULL,
   `recuperar_token` varchar(255) DEFAULT NULL,
-  CONSTRAINT `fk_usuarios_documentos` FOREIGN KEY (`idDocumento`) REFERENCES `documentos` (`idDocumento`)
+  `idDocumento` int(11) NOT NULL DEFAULT '0'
 );
 
 INSERT INTO `usuarios` (`idUsuario`, `nome`,`email`, `senha`, `idDocumento`) VALUES
 (1, 'Mateus', 'mateus@email.com', 'senha', 1),
 (2, 'Jordano', 'jordano@email.com', 'outrasenha', 2);
+
+
+UPDATE `usuarios` SET `idDocumento` = `idUsuario`;
