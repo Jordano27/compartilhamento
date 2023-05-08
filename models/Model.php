@@ -12,7 +12,7 @@ class Model
     private $password = null;
 
     protected $table;
-    protected $conex;
+    protected $pdo;
 
     public function __construct()
     {
@@ -22,24 +22,37 @@ class Model
         $this->table = $tbl;
 
         // Conecta no banco
-        $this->conex = new PDO("{$this->driver}:host={$this->host};port={$this->port};dbname={$this->dbname}", $this->user, $this->password);
+        $this->pdo = new PDO("{$this->driver}:host={$this->host};port={$this->port};dbname={$this->dbname}", $this->user, $this->password);
     }
 
-    public function getAll()
-    {
-        $sql = $this->conex->query("
-            SELECT u.*, d.*
-            FROM {$this->table} AS u
-            JOIN documentos AS d ON u.idDocumento = d.idDocumento
-            WHERE u.nome = '{$_SESSION['user']}'
-        ");   
-        
-        return $sql->fetchAll(PDO::FETCH_ASSOC);
+   
+    public function getdocument() {
+        $stmt = $this->pdo->prepare("
+            SELECT u.nome AS Usuario, d.nome AS Documento 
+            FROM {$this->table} u 
+            JOIN documentos d ON d.idDocumento = u.idDocumento 
+            WHERE u.nome = :user AND d.idDocumento = u.idDocumento
+        ");
+        $stmt->bindParam(':user', $_SESSION['user']);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
     }
+    
+    
+        public function getall(){
+            $sql=$this->pdo->query("SELECT * FROM {$this->table} WHERE nome = '{$_SESSION['user']}' ;");   
+            
+            return $sql->fetchall(PDO::FETCH_ASSOC);
+        
+    }
+
+    
+
 
     public function getById($id)
     {
-        $sql = $this->conex->prepare("SELECT * FROM {$this->table} WHERE id = :id");
+        $sql = $this->pdo->prepare("SELECT * FROM {$this->table} WHERE id = :id");
         $sql->bindValue(':id', $id);
         $sql->execute();
         return $sql->fetch(PDO::FETCH_ASSOC);
@@ -56,7 +69,7 @@ class Model
         $sql .= " SET {$sql_fields}";
 
         // Prepara e roda no banco
-        $insert = $this->conex->prepare($sql);
+        $insert = $this->pdo->prepare($sql);
 
         // Roda a consulta
         $insert->execute($data);
@@ -78,7 +91,7 @@ class Model
 
         $data['id'] = $id;
 
-        $upd = $this->conex->prepare($sql);
+        $upd = $this->pdo->prepare($sql);
         $upd->execute($data);
 
         // $error = $upd->errorInfo();
