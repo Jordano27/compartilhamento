@@ -32,6 +32,12 @@ class Model
         return $sql->fetchall(PDO::FETCH_ASSOC);
     
 }
+public function todos(){
+    $sql=$this->pdo->query("SELECT * FROM {$this->table}  ;");   
+    
+    return $sql->fetchall(PDO::FETCH_ASSOC);
+
+}
 
     
         public function getdocumento(){
