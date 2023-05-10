@@ -22,7 +22,7 @@
         $title = $_POST["title"];
         $title =   sanitize_filename($title);
         #file name with a random number so that similar dont get replaced
-        $pname =   $title."-".$_FILES["file"]["name"];
+        $pname =  $title."-".$_FILES["file"]["name"];
      
         #temporary file name to store file
         $tname = $_FILES["file"]["tmp_name"];
@@ -33,7 +33,7 @@
         #TO move the uploaded file to specific location
         if (move_uploaded_file($tname, $uploads_dir.'/'.$pname)) {
             #sql query to insert into database
-            $sql = "INSERT into documentos(nome,caminho,propretario) VALUES('$title','$pname','joao')";
+            $sql = "INSERT into documentos(nome,caminho,propretario) VALUES('$title','arquivo/$pname', '{$_SESSION['user']}')";
      
             if(mysqli_query($pdo,$sql)){
                 sanitize_filename($title);

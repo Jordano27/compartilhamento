@@ -26,22 +26,16 @@ class Model
     }
 
    
-    public function getdocument() {
-        $stmt = $this->pdo->prepare("
-            SELECT u.nome AS Usuario, d.nome AS Documento 
-            FROM {$this->table} u 
-            JOIN documentos d ON d.idDocumento = u.idDocumento 
-            WHERE u.nome = :user AND d.idDocumento = u.idDocumento
-        ");
-        $stmt->bindParam(':user', $_SESSION['user']);
-        $stmt->execute();
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return $result;
-    }
+    public function get(){
+        $sql=$this->pdo->query("SELECT * FROM {$this->table} WHERE nome = '{$_SESSION['user']}' ;");   
+        
+        return $sql->fetchall(PDO::FETCH_ASSOC);
     
+}
+
     
-        public function getall(){
-            $sql=$this->pdo->query("SELECT * FROM {$this->table} WHERE nome = '{$_SESSION['user']}' ;");   
+        public function getdocumento(){
+            $sql=$this->pdo->query("SELECT * FROM documentos WHERE propretario = '{$_SESSION['user']}' ;");   
             
             return $sql->fetchall(PDO::FETCH_ASSOC);
         
