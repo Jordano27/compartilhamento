@@ -41,14 +41,14 @@ public function todos(){
 
     
         public function getdocumento(){
-            $sql=$this->pdo->query("SELECT * FROM documentos WHERE propretario = '{$_SESSION['user']}' ;");   
+            $sql=$this->pdo->query("SELECT * FROM documentos ");   
             
             return $sql->fetchall(PDO::FETCH_ASSOC);
         
     }
 
     
-
+//WHERE propretario = '{$_SESSION['user']}'
 
     public function getById($id)
     {
