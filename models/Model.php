@@ -32,16 +32,10 @@ class Model
         return $sql->fetchall(PDO::FETCH_ASSOC);
     
 }
-public function todos(){
-    $sql=$this->pdo->query("SELECT * FROM {$this->table}  ;");   
-    
-    return $sql->fetchall(PDO::FETCH_ASSOC);
-
-}
 
     
         public function getdocumento(){
-            $sql=$this->pdo->query("SELECT * FROM documentos WHERE propretario = '{$_SESSION['user']}' ");   
+            $sql=$this->pdo->query("SELECT * FROM documentos WHERE propretario = '{$_SESSION['user']}' ;");   
             
             return $sql->fetchall(PDO::FETCH_ASSOC);
         

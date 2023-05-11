@@ -19,4 +19,9 @@ CREATE TABLE `documentos` (
   
 );
 
+ create table compartilhamentos( 
+  idCompartilhamento int not null PRIMARY KEY AUTO_INCREMENT, 
+  idDocumento int not null, 
+  idUsuario int not null );
+
 

@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="usuarios.css">
+
+  
+</head>
+<body>
+
+    {% include "inc/head.html" %}
+
+<form action="compartilhar.php" method="post">
+    {% for doc in documentos %}
+    <input type="hidden" name="id" value="{{ doc.idDocumento }}">
+    {% endfor %}
+    <select name="usuarios" id="">
+        <option value="{{ user.idUsuario }}">{{ user.nome }}</option>
+    </select>
+<input type="submit" value="Enviar">
+</form>
+ 
+    </body>   
+</html>
