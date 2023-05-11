@@ -29,6 +29,7 @@
         // Cria uma sessão para armazenar o usuário
         session_start();
         $_SESSION['user'] = $user->nome;
+        $_SESSION['id'] = $user->idUsuario;
         
         // Redireciona o usuário
         header('location:usuarios.php');

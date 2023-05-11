@@ -26,13 +26,16 @@ class Model
     }
 
    
-    public function get(){
-        $sql=$this->pdo->query("SELECT * FROM {$this->table} WHERE nome = '{$_SESSION['user']}' ;");   
-        
-        return $sql->fetchall(PDO::FETCH_ASSOC);
-    
-}
 
+        public function get() {
+     
+          
+            $sql=$this->pdo->query("SELECT * FROM usuarios WHERE nome = '{$_SESSION['user']}';"); 
+           
+        }
+     
+     
+     
     
         public function getdocumento(){
             $sql=$this->pdo->query("SELECT * FROM documentos WHERE propretario = '{$_SESSION['user']}' ;");   

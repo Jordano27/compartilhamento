@@ -11,12 +11,12 @@ CREATE TABLE `usuarios` (
 );
 
 CREATE TABLE `documentos` (
- `idDocumento` int(11) NOT NULL PRIMARY key AUTO_INCREMENT,
+  `idDocumento` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `nome` varchar(200) NOT NULL,
- 
   `propretario` varchar(200) NOT NULL,
-  `caminho` varchar(200) NOT NULL 
-  
+  `caminho` varchar(200) NOT NULL,
+  `idusuario` varchar(200) NOT NULL
+ 
 );
 
-
+INSERT INTO `documentos`(`idDocumento`, `nome`, `propretario`, `caminho`, `idusuario`) VALUES (60,'[luis]','[mateus]','[//]','1 or')
