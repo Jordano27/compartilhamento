@@ -26,21 +26,6 @@ class Model
     }
 
    
-<<<<<<< HEAD
-=======
-    public function get(){
-        $sql=$this->pdo->query("SELECT * FROM {$this->table} WHERE nome = '{$_SESSION['user']}' ;");   
-        
-        return $sql->fetchall(PDO::FETCH_ASSOC);
-    
-}
-public function todos(){
-    $sql=$this->pdo->query("SELECT * FROM {$this->table}  ;");   
-    
-    return $sql->fetchall(PDO::FETCH_ASSOC);
-
-}
->>>>>>> 83a3659ba8e54b842a11a5cc912dd1d77d0153f5
 
         public function get() {
      
@@ -53,7 +38,7 @@ public function todos(){
      
     
         public function getdocumento(){
-            $sql=$this->pdo->query("SELECT * FROM documentos WHERE propretario = '{$_SESSION['user']}' ");   
+            $sql=$this->pdo->query("SELECT * FROM documentos WHERE propretario = '{$_SESSION['user']}' ;");   
             
             return $sql->fetchall(PDO::FETCH_ASSOC);
         
