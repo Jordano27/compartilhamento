@@ -28,12 +28,12 @@
         $tname = $_FILES["file"]["tmp_name"];
        
         #upload directory path
-        $uploads_dir = 'arquivo';
+        $uploads_dir = 'arquivos';
 
         #TO move the uploaded file to specific location
         if (move_uploaded_file($tname, $uploads_dir.'/'.$pname)) {
             #sql query to insert into database
-            $sql = "INSERT into documentos(nome,caminho,propretario,idusuario) VALUES('$title','arquivo/$pname', '{$_SESSION['user']}', '{$_SESSION['id']}')";
+            $sql = "INSERT into documentos(nome,caminho,propretario) VALUES('$title','arquivo/$pname', '{$_SESSION['user']}')";
      
             if(mysqli_query($pdo,$sql)){
                 sanitize_filename($title);
@@ -48,63 +48,4 @@
     }
     echo $twig->render('upload.html')
     ;
-
-    /* {% include "inc/head.html" %}
-
-<!DOCTYPE html>
-<html>
-<head>
-    <title>File Upload</title>
-</head>
-<body>
- 
-
-
-<div class="col-md-6 offset-md-3 mt-5">
-    <a target="_blank" >
-       <img src=''>
-     </a>
-     <br>
-    
-
-     <form accept-charset="UTF-8"  method="POST" enctype="multipart/form-data" >
-       <div class="form-group">
-         <label for="exampleInputName">Nome</label>
-         <input type="text" name="title" class="form-control" placeholder="nome do arquivo" required="required">
-       </div>
-       
-       <div class="form-group mt-3">
-         <label class="mr-2">upload seu arquivo</label>
-         <input type="file" name="file">
-       </div>
-       <hr>
-       <button type="submit" class="btn btn-primary">Submit</button>
-     </form>
- </div> 
-</form>
-
-</body>
-</html>
-
-<!DOCTYPE html>
-<html>
-<head>
-    <title>File Upload</title>
-</head>
-<body>
- 
-<form method="post" enctype="multipart/form-data">
-    <label>Title</label>
-    <input type="text" name="title">
-    <label>File Upload</label>
-    <input type="File" name="file">
-    <input type="submit" name="submit">
- 
- 
-</form>
-<a href="usuarios.php" class="btn btn-outline-info"> ➕ documentos</a>
-</body>
-</html>
-*/
 ?>
-

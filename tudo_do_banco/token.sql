@@ -1,0 +1,1 @@
+ALTER TABLE `usuarios` ADD `recupera_token` VARCHAR(255) NULL DEFAULT NULL; 

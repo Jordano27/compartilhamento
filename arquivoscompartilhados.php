@@ -1,17 +1,5 @@
 <?php
-    # /usuarios.php
-    require('verifica_login.php');
-    require('twig_carregar.php');
-    
-    require('models/Model.php');
-    require('models/Usuario.php');
+require('verifica_login.php');
+require('twig_carregar.php');
 
-    $usr = new Usuario();
-    $usuarios =  $_SESSION['id'];
- 
-    echo($usuarios);
-   
-    echo $twig->render('usuarios.html', [
-        'usuarios' => $usuarios,
-       
-    ]);
+echo $twig->render('arquivoscompartilhados.html');

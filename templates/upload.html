@@ -1,23 +1,19 @@
-
 <!DOCTYPE html>
 <html>
 <head>
     <title>File Upload</title>
 </head>
 <body>
-  {% include "inc/head.html" %}
+ 
 <form method="post" enctype="multipart/form-data">
-    <label>Nome : </label>
+    <label>Title</label>
     <input type="text" name="title">
-    <br>
-    <br>
     <label>File Upload</label>
     <input type="File" name="file">
-    <hr>
     <input type="submit" name="submit">
  
  
 </form>
-
+<a href="usuarios.php" class="btn btn-outline-info"> ➕ documentos</a>
 </body>
 </html>
