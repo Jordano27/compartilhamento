@@ -1,4 +1,20 @@
+<<<<<<< HEAD
 {% include "inc/head.html" %}
+=======
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tabela de Usuários e Documentos</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="usuarios.css">
+
+  
+</head>
+<body>
+    {% include "inc/head.html" %}
+>>>>>>> 83a3659ba8e54b842a11a5cc912dd1d77d0153f5
 {% for user in usuarios %}
 <h1>Usuario :{{ user.nome }}</h1>
 {% endfor %}
@@ -24,6 +40,12 @@
                 {% endfor %}
             </tbody>
         </table>
+<<<<<<< HEAD
       
    
+=======
+        <a href="upload.php">Adicionar arquivo</a>
+      {% include "inc/foot.html" %}
+    </body>
+>>>>>>> 83a3659ba8e54b842a11a5cc912dd1d77d0153f5
 </html>
