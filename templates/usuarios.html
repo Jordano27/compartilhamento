@@ -2,21 +2,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Tabela de Usuários e Documentos</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="usuarios.css">
+    {% include "inc/head.html" %}
 
   
 </head>
 <body>
-
-    {% include "inc/head.html" %}
-
-
-  
-
 {% for user in usuarios %}
 <h1>Usuario :{{ user.nome }}</h1>
 {% endfor %}
@@ -29,7 +23,7 @@
                 <tr>
                     <th>Nome</th>
                     <th>Proprietário</th>
-                      <th>visualizaar</th>
+                      <th>visualizar</th>
                        <th>Apagar</th>
                 </tr>
             </thead>
@@ -44,17 +38,6 @@
                 {% endfor %}
             </tbody>
         </table>
-        
-     
+        </body>
 
-      
-
-   
-
-        
- 
-    </body>
-
-
-    
 </html>
