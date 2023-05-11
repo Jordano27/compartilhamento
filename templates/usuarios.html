@@ -1,8 +1,4 @@
 
-
-{% include "inc/head.html" %}
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,74 +15,7 @@
     {% include "inc/head.html" %}
 
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <!-- Container wrapper -->
-        <div class="container">
-          <!-- Navbar brand -->
-          <a class="navbar-brand me-2" >
-            <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_E9yWbSQurl6FGQj7JPJBbfA1n_WjbL8_Gg&usqp=CAU"
-              height="50"
-              alt="MDB Logo"
-              loading="lazy"
-              style="margin-top: -1px;"
-            />
-          </a>
-      
-          <!-- Toggle button -->
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-mdb-toggle="collapse"
-            data-mdb-target="#navbarButtonsExample"
-            aria-controls="navbarButtonsExample"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <i class="fas fa-bars"></i>
-          </button>
-      
-          <!-- Collapsible wrapper -->
-          <div class="collapse navbar-collapse" id="navbarButtonsExample">
-            <!-- Left links -->
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-              
-              </li>
-            </ul>
-            <!-- Left links -->
-      
-            <div class="d-flex align-items-center">
-                <a
-                class="btn btn-dark px-3"
-                href="usuarios.php"
-                role="button"
-                >Meus Arquivos<i class="fab fa-github"></i
-              ></a>
-             
-              <a
-              class="btn btn-dark px-3"
-              href="arquivoscompartilhados.php"
-              role="button"
-              >arquivos compartilhados<i class="fab fa-github"></i
-            ></a>
-            </div>
-          </div>
-
-          <div class="d-flex align-items-center">
-              
-            <a
-            class="btn btn-dark px-3"
-            href="logout.php"
-            role="button"
-            >logout<i class="fab fa-github"></i
-          ></a>
-          </div>
-        </div>
-          <!-- Collapsible wrapper -->
-        </div>
-        <!-- Container wrapper -->
-      </nav>
+  
 
 {% for user in usuarios %}
 <h1>Usuario :{{ user.nome }}</h1>
@@ -116,18 +45,10 @@
 
    
 
-        <a href="upload.php">Adicionar arquivo</a>
-      {% include "inc/foot.html" %}
+        
+ 
     </body>
 
 
-    <footer class="bg-light text-center text-lg-start" >
-       
-        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-          © 2020 Copyright:
-          <a class="text-dark" href="https://mdbootstrap.com/">MWJP Corporation</a>
-        </div>
-        
-      </footer>
-
+    
 </html>
