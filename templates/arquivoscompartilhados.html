@@ -8,7 +8,32 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
-     {% include "inc/head.html" %}
-  {% include "inc/foot.html" %}
+      {% include "inc/head.html" %}
+{% for user in usuarios %}
+<h1>Usuario :{{ user.nome }}</h1>
+{% endfor %}
+      
+
+        <h2>Documentos</h2>
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Proprietário</th>
+                      <th>visualizaar</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for doc in documentos %}
+                    <tr>
+                        <td>{{ doc.nome }}</td>
+                        <td>{{ doc.propretario }}</td>
+                          <td><a href="{{ doc.caminho }}">👀</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+  
 </body>
 </html>

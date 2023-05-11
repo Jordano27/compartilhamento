@@ -23,6 +23,8 @@
                 <tr>
                     <th>Nome</th>
                     <th>Proprietário</th>
+                      <th>visualizaar</th>
+                       <th>Apagar</th>
                 </tr>
             </thead>
             <tbody>
@@ -30,11 +32,13 @@
                     <tr>
                         <td>{{ doc.nome }}</td>
                         <td>{{ doc.propretario }}</td>
+                          <td><a href="{{ doc.caminho }}">👀</a></td>
+                          <td><a href="docexcluir.php?id={{ doc.idDocumento }}">🧨</a></td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
-        <a href="upload.php">Adicionar arquivo</a>
-      {% include "inc/foot.html" %}
+        
+     
     </body>
 </html>

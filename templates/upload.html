@@ -2,18 +2,27 @@
 <html>
 <head>
     <title>File Upload</title>
+    	<title>Tabela de Usuários e Documentos</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="usuarios.css">
 </head>
 <body>
- 
+ {% include "inc/head.html" %}
 <form method="post" enctype="multipart/form-data">
-    <label>Title</label>
+    <label>Nome</label>
+    <br>
     <input type="text" name="title">
-    <label>File Upload</label>
+    <br>
+    <label></label>
+    
     <input type="File" name="file">
+    <hr>
     <input type="submit" name="submit">
  
  
 </form>
-<a href="usuarios.php" class="btn btn-outline-info"> ➕ documentos</a>
+
 </body>
 </html>

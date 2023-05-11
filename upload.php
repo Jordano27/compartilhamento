@@ -28,7 +28,7 @@
         $tname = $_FILES["file"]["tmp_name"];
        
         #upload directory path
-        $uploads_dir = 'arquivos';
+        $uploads_dir = 'arquivo';
 
         #TO move the uploaded file to specific location
         if (move_uploaded_file($tname, $uploads_dir.'/'.$pname)) {
