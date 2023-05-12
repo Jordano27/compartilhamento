@@ -16,7 +16,8 @@
 {% endfor %}
       
 
-        <h2>Documentos</h2>
+        
+    
 
         <table class="table table-hover">
             <thead>
@@ -38,6 +39,21 @@
                 {% endfor %}
             </tbody>
         </table>
+
+         <form role="form" method="post" action="novo_usuario_gravar.php">
+			
+ 
+				<div class="form-group ls-login-user">
+					<label for="userLogin">search engine 🔎</label>
+					<input class="form-control ls-login-bg-user input-lg" id="userLogin" type="text" name="search" aria-label="Usuário" placeholder="Usuário">
+				</div>
+				
+			
+                <input type="submit" name="submit" class="btn btn-primary btn-lg btn-block">
+				
+ 
+			
+		</form>
         </body>
 
 </html>
