@@ -1,0 +1,283 @@
+
+codigo analizar:
+
+<?php
+require('twig_carregar.php');
+require('models/Model.php');
+require('models/Usuario.php');
+
+$localhost = "localhost"; 
+$dbname = "usuario";  
+$dbusername = "root"; 
+$dbpassword = "";  
+
+// Conectar ao banco de dados
+$pdo = new PDO("mysql:host=$localhost;dbname=$dbname", $dbusername, $dbpassword);
+
+// Verificar a conexão
+if (!$pdo) {
+  echo "Falha ao conectar ao MySQL";
+  exit();
+}
+
+// Consultar o banco de dados para obter uma lista de usuários
+$sql = $pdo->prepare('SELECT idUsuario, nome FROM usuarios');
+$sql->execute();
+$usuarios = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+// Verificar se o formulário foi enviado
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  // Obter o ID do usuário selecionado e o arquivo enviado
+  $idUsuario = $_POST['usuario'];
+  $arquivo = $_FILES['arquivo'];
+
+  // Verificar se um usuário foi selecionado e um arquivo foi enviado
+  if (!empty($idUsuario) && !empty($arquivo)) {
+    // Verificar se o usuário selecionado existe no banco de dados
+    $usuario = Usuario::getById($idUsuario);
+    if (!$usuario) {
+      echo "Usuário não encontrado.";
+      exit();
+    }
+
+    // Verificar se o arquivo pode ser enviado para o usuário
+    if (!podeEnviarArquivoParaUsuario($arquivo, $usuario)) {
+      echo "Não é possível enviar o arquivo para esse usuário.";
+      exit();
+    }
+
+    // Mover o arquivo para a pasta do usuário
+    $caminhoDestino = "pasta_do_usuario/{$usuario['idUsuario']}/";
+    if (!file_exists($caminhoDestino)) {
+      mkdir($caminhoDestino, 0777, true);
+    }
+    $caminhoArquivo = $caminhoDestino . basename($arquivo['name']);
+    move_uploaded_file($arquivo['tmp_name'], $caminhoArquivo);
+    echo "Arquivo enviado com sucesso para o usuário {$usuario['nome']}.";
+  }
+}
+
+function podeEnviarArquivoParaUsuario($arquivo, $usuario) {
+  // Aqui você pode adicionar suas próprias regras de validação, por exemplo:
+  // - verificar se o usuário tem espaço suficiente para o arquivo
+  // - verificar se o tipo de arquivo é permitido para o usuário
+  // - verificar se o arquivo não é maior do que um determinado tamanho
+  // Neste exemplo, verificamos apenas a extensão do arquivo.
+  $extensaoPermitida = array('jpg', 'jpeg', 'png', 'gif');
+  $extensao = strtolower(pathinfo($arquivo['name'], PATHINFO_EXTENSION));
+  return in_array($extensao, $extensaoPermitida);
+}
+?>
+
+<form method="post" enctype="multipart/form-data">
+  <label for="usuario">Selecione um usuário:</label
+
+
+
+
+//////////////////////
+
+
+
+  // Consultar o banco de dados
+  $sql = $pdo->prepare('SELECT idUsuario, nome FROM usuarios');
+
+  // Executar a consulta e armazenar os dados em um array
+  $sql->execute();
+  $dados = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+  // Exibir os dados em uma lista de opções
+  foreach ($dados as $dado) {
+    echo "<option value='" . $dado['idUsuario'] . "'>" . $dado['nome'] . "</option>";
+  }
+
+  // Fechar a conexão
+  $pdo = null;
+?>
+
+////////////////////////
+
+?>
+  </select>
+  <br><br>
+  <label for="arquivo">Selecione um arquivo:</label>
+  <input type="file" name="arquivo" id="arquivo">
+  <br><br>
+  <input type="submit" value="Enviar">
+</form>
+<?php
+  if (isset($_POST['usuario']) && isset($_FILES['arquivo'])) {
+    // Obter o ID do usuário selecionado
+    $idUsuario = $_POST['usuario'];
+
+    // Obter o caminho do arquivo temporário do upload
+    $arquivoTemporario = $_FILES['arquivo']['tmp_name'];
+
+    // Obter o nome do arquivo original
+    $nomeArquivo = $_FILES['arquivo']['name'];
+
+    // Definir o caminho onde o arquivo será salvo
+    $caminhoDestino = 'uploads/' . $nomeArquivo;
+
+    // Mover o arquivo para o destino
+    if (move_uploaded_file($arquivoTemporario, $caminhoDestino)) {
+      // Conectar ao banco de dados
+      $pdo = new PDO("mysql:host=$localhost;dbname=$dbname", $dbusername, $dbpassword);
+
+      // Inserir o registro na tabela de arquivos
+      $sql = $pdo->prepare('INSERT INTO arquivos (idUsuario, nomeArquivo, caminhoDestino) VALUES (?, ?, ?)');
+      $sql->execute([$idUsuario, $nomeArquivo, $caminhoDestino]);
+
+      // Fechar a conexão
+      $pdo = null;
+
+      echo "Arquivo enviado com sucesso.";
+    } else {
+      echo "Falha ao enviar o arquivo.";
+    }
+  }
+?>
+
+
+pesquisa do chat gpt::
+
+
+
+a partir do codigo abaixo, faça um codigo em php para enviar um arquivo especifico para um usuario previamente selecionado e um select
+
+ :     <?php
+
+require('twig_carregar.php');
+
+require('models/Model.php');
+require('models/Usuario.php');
+
+$localhost = "localhost"; 
+$dbname = "usuario";  
+$dbusername = "root"; 
+$dbpassword = "";  
+
+// Conectar ao banco de dados
+$pdo = new PDO("mysql:host=$localhost;dbname=$dbname", $dbusername, $dbpassword);
+
+// Verificar a conexão
+if (!$pdo) {
+  echo "Falha ao conectar ao MySQL";
+  exit();
+}
+
+// Consultar o banco de dados
+$sql = $pdo->prepare('SELECT nome FROM usuarios');
+
+// Executar a consulta e armazenar os dados em um array
+$dados = array();
+$sql->execute();
+while ($linha = $sql->fetch(PDO::FETCH_ASSOC)) {
+  $dados[] = $linha;
+}
+
+// Exibir os dados em uma lista de opções
+echo "<select>";
+foreach ($dados as $dado) {
+  echo "<option value='" . $dado['nome'] . "'>" . $dado['nome'] . "</option>";
+}
+echo "</select>";
+
+// Fechar a conexão
+$pdo = null;
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+    require('verifica_login.php');
+    require('twig_carregar.php');
+    
+
+    require('models/Model.php');
+    require('models/Usuario.php');
+    $localhost = "localhost"; 
+    $dbusername = "root"; 
+    $dbpassword = "";  
+    $dbname = "usuario";  
+
+// Conectar ao banco de dados
+$pdo = mysqli_connect($localhost,$dbusername,$dbpassword,$dbname);
+
+// Verificar a conexão
+if (mysqli_connect_errno()) {
+  echo "Falha ao conectar ao MySQL: " . mysqli_connect_error();
+  exit();
+}
+
+// Consultar o banco de dados
+$sql = $pdo->prepare('SELECT nome FROM usuarios');
+
+// Armazenar os dados em um array
+$dados = array();
+while ($linha = mysqli_fetch_assoc($sql)) {
+  $dados[] = $linha;
+}
+
+// Exibir os dados em uma lista de opções
+echo "<select>";
+foreach ($dados as $dado) {
+  echo "<option value='" . $dado['idUsuario'] . "'>" . $dado['nome'] . "</option>";
+}
+echo "</select>";
+
+// Fechar a conexão
+mysqli_close($sql);
+
+
+------------------------------------------------------------------------------------------------------
+// Conectar ao banco de dados
+$conexao = mysqli_connect("nome_do_host", "nome_do_usuario", "senha", "nome_do_banco");
+
+// Verificar a conexão
+if (mysqli_connect_errno()) {
+  echo "Falha ao conectar ao MySQL: " . mysqli_connect_error();
+  exit();
+}
+
+// Consultar o banco de dados
+$resultado = mysqli_query($conexao, "SELECT * FROM tabela");
+
+// Armazenar os dados em um array
+$dados = array();
+while ($linha = mysqli_fetch_assoc($resultado)) {
+  $dados[] = $linha;
+}
+
+// Exibir os dados em uma lista de opções
+echo "<select>";
+foreach ($dados as $dado) {
+  echo "<option value='" . $dado['id'] . "'>" . $dado['nome'] . "</option>";
+}
+echo "</select>";
+
+// Fechar a conexão
+mysqli_close($conexao);
+?>
+*/
