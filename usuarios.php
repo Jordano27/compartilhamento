@@ -6,7 +6,7 @@
     require('models/Model.php');
     require('models/Usuario.php');
 
-    if (isset($_POST["submit"])) {
+    /*if (isset($_POST["submit"])) {
         $str = $_POST["search"];
         $sth = $con->prepare("SELECT * FROM `usuario` WHERE name = '$str' and idcomuento session id");
     
@@ -14,9 +14,9 @@
         $sth -> execute();
     
         if($row = $sth->fetch())
-        {
-            ?>
-            <br><br><br>
+        { 
+         
+          
             <table>
                 <tr>
                     <th>Name</th>
@@ -28,8 +28,8 @@
                 </tr>
     
             </table>
-    <?php 
-
+        }
+        */
     $usr = new Usuario();
     $usuarios = $usr->get();
     $documentos = $usr->getdocumento();
@@ -37,4 +37,3 @@
         'usuarios' => $usuarios,
        'documentos' => $documentos,
     ]);
-    
