@@ -15,8 +15,7 @@ if (!$pdo) {
   echo "Falha ao conectar ao MySQL";
   exit();
 }
-print_r($_SESSION);
-die;
+
 // Obter o ID do usuário logado
 $idUsuario = $_SESSION['idUsuario'];
 
@@ -24,7 +23,7 @@ $idUsuario = $_SESSION['idUsuario'];
 $sql = $pdo->prepare('SELECT c.idCompartilhamento, d.nome AS nomeArquivo, u.nome AS nomeUsuario
 FROM compartilhamentos c
 INNER JOIN usuarios u
-ON c.idUsuarioDestino = u.idUsuario
+ON c.idUsuario = u.idUsuario
 INNER JOIN documentos d
 ON c.idDocumento = d.idDocumento
 WHERE c.idUsuario = ?
