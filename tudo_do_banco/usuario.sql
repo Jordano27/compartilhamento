@@ -27,3 +27,4 @@ CREATE TABLE `documentos` (
 
 ALTER TABLE compartilhamentos ADD FOREIGN KEY (idUsuario) REFERENCES usuarios(idUsuario);
 ALTER TABLE compartilhamentos ADD FOREIGN KEY (idDocumento) REFERENCES documentos(idDocumento);
+ALTER TABLE documentos ADD FOREIGN KEY (idUsuario) REFERENCES usuarios(idUsuario);
