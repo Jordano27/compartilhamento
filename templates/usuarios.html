@@ -34,7 +34,7 @@
                     <tr>
                         <td>{{ doc.nome }}</td>
                         <td>{{ doc.propretario }}</td>
-                        <td><a href="puxarusuarios.php">📬</a></td>
+                        <td><a href="puxarusuarios.php?id={{ doc.idDocumento }}">📬</a></td>
                           <td><a href="{{ doc.caminho }}">👀</a></td>
                           <td><a href="docexcluir.php?id={{ doc.idDocumento }}">🧨</a></td>
                     </tr>
