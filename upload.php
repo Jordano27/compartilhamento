@@ -23,13 +23,22 @@ if (isset($_POST["submit"])) {
         $date = date('Y-m-d');
 
         if (isset($_SESSION['idUsuario'])) {
-            $sql = "INSERT INTO documentos (nome, caminho, data_upload, idUsuario) VALUES (?, ?, ?, ?)";
-            $stmt = $pdo->prepare($sql);
-            $stmt->execute([$title, 'arquivo/' . $pname, $date, $_SESSION['idUsuario']]);
+            $stmt = $pdo->prepare("SELECT idUsuario FROM usuarios WHERE idUsuario = :user");
+            $stmt->bindValue(':user', $_SESSION['idUsuario'], PDO::PARAM_INT);
+            $stmt->execute();
+            $userExists = $stmt->fetch();
 
-            echo "File successfully uploaded";
+            if ($userExists && $userExists['idUsuario']) {
+                $sql = "INSERT INTO documentos (nome, caminho, data_upload, idUsuario) VALUES (?, ?, ?, ?)";
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute([$title, 'arquivo/' . $pname, $date, $_SESSION['idUsuario']]);
+
+                echo "File successfully uploaded";
+            } else {
+                echo "User does not exist";
+            }
         } else {
-            echo "User does not exist";
+            echo "User session not found";
         }
     } else {
         echo "Escolha um arquivo e use somente letras e números";
