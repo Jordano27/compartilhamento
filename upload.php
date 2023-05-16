@@ -1,8 +1,8 @@
 <?php
-require('verifica_login.php');
-require('twig_carregar.php');
-require('pdo.inc.php');
-require('func/sanitize_filename.php');
+require 'verifica_login.php';
+require 'twig_carregar.php';
+require 'pdo.inc.php';
+require 'func/sanitize_filename.php';
 
 if (isset($_POST["submit"])) {
     #retrieve file title
@@ -23,7 +23,7 @@ if (isset($_POST["submit"])) {
     $file_ext = strtolower(pathinfo($_FILES["file"]["name"], PATHINFO_EXTENSION));
 
     if (!in_array($file_ext, $allowed_ext)) {
-        echo "Only .doc, .docx and .pdf files are allowed";
+        echo "Only .doc, .docx, and .pdf files are allowed";
         exit();
     }
 
@@ -44,10 +44,10 @@ if (isset($_POST["submit"])) {
 
             echo "File Successfully uploaded";
         } else {
-            echo "User does not exist";
+            echo "User session not found";
         }
     } else {
-        echo "Escolha um arquivo e use somente letras e numeros";
+        echo "Escolha um arquivo e use somente letras e números";
     }
 }
 echo $twig->render('upload.html');

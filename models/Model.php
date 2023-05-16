@@ -26,29 +26,35 @@ class Model
     }
 
    
-    public function get(){
-        $sql=$this->pdo->query("SELECT * FROM {$this->table} WHERE nome = '{$_SESSION['user']}' ;");   
-        
-        return $sql->fetchall(PDO::FETCH_ASSOC);
-    
-}
+    public function get()
+    {
+        $sql = $this->pdo->prepare("SELECT * FROM {$this->table} WHERE nome = :nome");
+        $sql->bindValue(':nome', $_SESSION['user']);
+        $sql->execute();
 
-    
-        public function getdocumento(){
-            $sql=$this->pdo->query("SELECT * FROM documentos WHERE propretario = '{$_SESSION['user']}' ;");   
-            
-            return $sql->fetchall(PDO::FETCH_ASSOC);
-        
+        return $sql->fetchAll(PDO::FETCH_ASSOC);
     }
 
     
+    public function getdocumento()
+    {
+        if (!isset($_SESSION['idUsuario'])) {
+            return []; // Retorna um array vazio se a chave idUsuario não estiver definida
+        }
 
+        $sql = $this->pdo->prepare("SELECT * FROM documentos WHERE idUsuario = :idUsuario");
+        $sql->bindValue(':idUsuario', $_SESSION['idUsuario']);
+        $sql->execute();
+
+        return $sql->fetchAll(PDO::FETCH_ASSOC);
+    }
 
     public function getById($id)
     {
         $sql = $this->pdo->prepare("SELECT * FROM {$this->table} WHERE id = :id");
         $sql->bindValue(':id', $id);
         $sql->execute();
+
         return $sql->fetch(PDO::FETCH_ASSOC);
     }
 
@@ -69,9 +75,6 @@ class Model
         $insert->execute($data);
 
         return $insert->errorInfo();
-
-        
-
     }
 
     public function update($data, $id)
@@ -80,8 +83,8 @@ class Model
         unset($data['id']);
 
         $sql = "UPDATE {$this->table}";
-        $sql.= ' SET ' . $this->sql_fields($data);
-        $sql.= ' WHERE id = :id';
+        $sql .= ' SET ' . $this->sql_fields($data);
+        $sql .= ' WHERE id = :id';
 
         $data['id'] = $id;
 
@@ -100,16 +103,17 @@ class Model
         }
         return $sql_fields;
     }
+
     private function sql_fields($data)
     {
         $sql_fields = $this->map_fields($data);
         return implode(', ', $sql_fields);
     }
-
-    private function where_fields($data, $glue = 'AND') {
+    
+    private function where_fields($data, $glue = 'AND')
+    {
         $glue = $glue == 'OR' ? ' OR ' : ' AND ';
         $fields = $this->map_fields($data);
         return implode($glue, $fields);
     }
-
-}
+}    
