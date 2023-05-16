@@ -14,7 +14,6 @@ CREATE TABLE `documentos` (
   `idDocumento` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `nome` varchar(200) NOT NULL,
   `data_upload` date NOT NULL, 
-  `propretario` varchar(200) NOT NULL,
   `caminho` varchar(200) NOT NULL,
   `idUsuario` int(11) NOT NULL,
   FOREIGN KEY (idUsuario) REFERENCES usuarios(idUsuario)
@@ -27,10 +26,6 @@ CREATE TABLE `compartilhamentos` (
   FOREIGN KEY (idDocumento) REFERENCES documentos(idDocumento),
   FOREIGN KEY (idUsuario) REFERENCES usuarios(idUsuario)
 );
-
-
-
-
 
 
 /*banco velho caso precise, senâo exclui*/
