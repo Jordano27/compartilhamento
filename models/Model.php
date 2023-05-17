@@ -38,15 +38,14 @@ class Model
     
     public function getdocumento()
     {
-        if (!isset($_SESSION['idUsuario'])) {
+        if (!isset($_SESSION['id'])) {
             return []; // Retorna um array vazio se a chave idUsuario não estiver definida
         }
-
-        $sql = $this->pdo->prepare("SELECT * FROM documentos WHERE idUsuario = :idUsuario");
-        $sql->bindValue(':idUsuario', $_SESSION['idUsuario']);
-        $sql->execute();
-
-        return $sql->fetchAll(PDO::FETCH_ASSOC);
+    
+        $stmt = $this->pdo->prepare("SELECT * FROM documentos WHERE idUsuario = ?");
+        $stmt->execute([$_SESSION['id']]);
+    
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function getById($id)

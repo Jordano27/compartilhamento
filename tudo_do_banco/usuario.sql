@@ -13,6 +13,7 @@ CREATE TABLE `usuarios` (
 CREATE TABLE `documentos` (
   `idDocumento` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `nome` varchar(200) NOT NULL,
+  `propretario` varchar(200) NOT NULL,
   `data_upload` date NOT NULL, 
   `caminho` varchar(200) NOT NULL,
   `idUsuario` int(11) NOT NULL,
@@ -26,7 +27,6 @@ CREATE TABLE `compartilhamentos` (
   FOREIGN KEY (idDocumento) REFERENCES documentos(idDocumento),
   FOREIGN KEY (idUsuario) REFERENCES usuarios(idUsuario)
 );
-
 
 
 

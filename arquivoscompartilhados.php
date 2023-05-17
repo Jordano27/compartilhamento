@@ -16,7 +16,7 @@ if (!$pdo) {
 }
 
 // Obter o ID do usuário logado
-$idUsuario = $_SESSION['idUsuario'];
+$idUsuario = $_SESSION['user'];
 
 // Consultar o banco de dados para obter a lista de arquivos compartilhados
 $sql = $pdo->prepare('SELECT c.idCompartilhamento, d.nome AS nomeArquivo, u.nome AS nomeUsuario
