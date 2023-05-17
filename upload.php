@@ -38,9 +38,9 @@ if (isset($_POST["submit"])) {
         $userExists = $stmt->fetch();
 
         if ($userExists) {
-            $sql = "INSERT INTO documentos (nome, caminho, propretario, data_upload, idUsuario) VALUES (?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO documentos (nome, caminho, propretario, data_upload, idUsuario, tipo) VALUES (?, ?, ?, ?, ?,?)";
             $stmt = $pdo->prepare($sql);
-            $stmt->execute([$title, 'arquivo/'.$pname, $_SESSION['user'], $date, $user_id]);
+            $stmt->execute([$title, 'arquivo/'.$pname, $_SESSION['user'], $date, $user_id,$file_ext]);
 
             echo "File Successfully uploaded";
         } else {

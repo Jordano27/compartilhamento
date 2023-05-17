@@ -27,7 +27,7 @@ $sql->execute();
 $documentos = $sql->fetchAll(PDO::FETCH_ASSOC);
 
 // Obter o ID do usuário logado
-$idUsuario = $_GET['id'];
+$idDocumentoo = $_GET['id'] ?? false;
 
 // Verificar se o formulário foi enviado
 if (isset($_POST['usuario']) && isset($_POST['idDocumento'])) {
@@ -52,7 +52,7 @@ if (isset($_POST['usuario']) && isset($_POST['idDocumento'])) {
     $sql->execute([$idUsuarioDestino, $idDocumento]);
 
     // Redirecionar para a página de compartilhamentos
-    header('Location: arquivoscompartilhados.php');
+    header('Location: usuarios.php');
     exit();
   } else {
     echo "Documento inválido. Por favor, selecione um documento válido.";
@@ -60,14 +60,8 @@ if (isset($_POST['usuario']) && isset($_POST['idDocumento'])) {
 }
 
 // Exibir o formulário
-echo "<form method='POST' enctype='multipart/form-data'>";
-echo "<label>Selecione um documento:</label>";
-echo "<select name='idDocumento'>";
-foreach ($documentos as $documento) {
-  echo "<option value='" . $documento['idDocumento'] . "'>" . $documento['nome'] . "</option>";
-}
-echo "</select>";
-echo "<br><br>";
+echo "<form action='#' method='POST' enctype='multipart/form-data'>";
+echo" <input type='hidden' name='idDocumento' value='$idDocumentoo'> ";
 echo "<label>Selecione um usuário:</label>";
 echo "<select name='usuario' >";
 foreach ($usuarios as $usuario) {

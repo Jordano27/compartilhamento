@@ -17,6 +17,7 @@ CREATE TABLE `documentos` (
   `data_upload` date NOT NULL, 
   `caminho` varchar(200) NOT NULL,
   `idUsuario` int(11) NOT NULL,
+  `tipo` varchar(200) NOT NULL,
   FOREIGN KEY (idUsuario) REFERENCES usuarios(idUsuario)
 );
 
@@ -27,7 +28,6 @@ CREATE TABLE `compartilhamentos` (
   FOREIGN KEY (idDocumento) REFERENCES documentos(idDocumento),
   FOREIGN KEY (idUsuario) REFERENCES usuarios(idUsuario)
 );
-
 
 
 

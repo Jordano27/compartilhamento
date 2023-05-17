@@ -24,6 +24,7 @@
                 <tr>
                     <th>Nome</th>
                     <th>Proprietário</th>
+                    <th>Compartilhar</th>
                       <th>visualizar</th>
                        <th>Apagar</th>
                 </tr>
@@ -33,28 +34,44 @@
                     <tr>
                         <td>{{ doc.nome }}</td>
                         <td>{{ doc.propretario }}</td>
-                      
+                      <td><a href="puxarusuarios.php?id={{ doc.idDocumento }}">📫</a></td>
                           <td><a href="{{ doc.caminho }}">👀</a></td>
                           <td><a href="docexcluir.php?id={{ doc.idDocumento }}">🧨</a></td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
-        <a href="puxarusuarios.php?id={{ doc.idDocumento }}">COMPARTILHAR</a>
-         <form role="form" method="post" action="novo_usuario_gravar.php">
-			
- 
-				<div class="form-group ls-login-user">
-					<label for="userLogin">search engine 🔎</label>
-					<input class="form-control ls-login-bg-user input-lg" id="userLogin" type="text" name="search" aria-label="Usuário" placeholder="Usuário">
-				</div>
-				
-			
-                <input type="submit" name="submit" class="btn btn-primary btn-lg btn-block">
-				
- 
-			
-		</form>
+    </form>
+        
+    
+    <form role="form" method="GET" action="usuarios.php" class="inline-filters">
+        <div class="form-row align-items-center">
+            <div class="col-auto">
+                <label for="tipoArquivo">Tipo:</label>
+                <select class="form-control" id="tipoArquivo" name="tipo_arquivo">
+                    <option value="">Todos</option>
+                    <option value="doc">doc</option>
+                    <option value="docx">docx</option>
+                    <option value="pdf">pdf</option>
+                </select>
+            </div>
+            <div class="col-auto">
+                <label for="dataInicio">Data Início:</label>
+                <input type="date" class="form-control" id="dataInicio" name="data_inicio">
+            </div>
+            <div class="col-auto">
+                <label for="dataFim">Data Fim:</label>
+                <input type="date" class="form-control" id="dataFim" name="data_fim">
+            </div>
+            <div class="col-auto">
+                <label for="nomeArquivo">Nome:</label>
+                <input type="text" class="form-control" id="nomeArquivo" name="nome_arquivo">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary">Filtrar</button>
+            </div>
+        </div>
+    </form>
         </body>
 
 </html>

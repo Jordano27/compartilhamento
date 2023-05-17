@@ -17,10 +17,9 @@
 <body>
    
 {% for user in usuarios %}
-<h1>Usuario :{{ user.nome }}</h1>
+<h1>Usuario :</h1>
 {% endfor %}
       
-
         <h2>Documentos</h2>
 
         <table class="table table-hover">
@@ -33,16 +32,18 @@
             </thead>
             <tbody>
                 {% for doc in documentos %}
-                    <tr>
-                        <td>{{ doc.nome }}</td>
-                        <td>{{ doc.propretario }}</td>
-                          <td><a href="{{ doc.caminho }}">👀</a></td>
-                    </tr>
-                {% endfor %}
+                <tr>
+                    <td>{{ doc.nome }}</td>
+                    <td>{{ doc.propretario }}</td>
+                 
+                      <td><a href="{{ doc.caminho }}">👀</a></td>
+                     
+                </tr>
+            {% endfor %}
             </tbody>
         </table>
-  
-  
+        
+       
 
 </body>
 </html>

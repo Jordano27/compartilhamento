@@ -48,6 +48,17 @@ class Model
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getcompartilha()
+    {
+        if (!isset($_SESSION['id'])) {
+            return []; // Retorna um array vazio se a chave idUsuario não estiver definida
+        }
+    
+        $stmt = $this->pdo->prepare("SELECT * FROM compartilhamentos WHERE idUsuario = ?");
+        $stmt->execute([$_SESSION['id']]);
+    
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
     public function getById($id)
     {
         $sql = $this->pdo->prepare("SELECT * FROM {$this->table} WHERE id = :id");
