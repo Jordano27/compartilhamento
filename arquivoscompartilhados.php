@@ -25,7 +25,7 @@ $sql = $pdo->prepare('SELECT c.idCompartilhamento, d.caminho as caminhoArquivo, 
 FROM compartilhamentos c
 INNER JOIN documentos d ON c.idDocumento = d.idDocumento
 INNER JOIN usuarios u ON d.idUsuario = u.idUsuario
-WHERE c.idUsuario = ? AND d.caminho = c.caminho  
+WHERE c.idUsuario = ? AND d.caminho = c.caminhio  
 ORDER BY c.idCompartilhamento DESC');
 $sql->execute([$idUsuario]);
 $compartilhamentos = $sql->fetchAll(PDO::FETCH_ASSOC);
