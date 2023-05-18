@@ -27,7 +27,7 @@ CREATE TABLE `compartilhamentos` (
   `idUsuario` int(11) NOT NULL,
   `caminhio` int(11) NOT NULL,
   FOREIGN KEY (idDocumento) REFERENCES documentos(idDocumento),
-  FOREIGN KEY (idUsuario) REFERENCES usuarios(idUsuario),
-  FOREIGN KEY (caminho) REFERENCES documentos(caminho)
+  FOREIGN KEY (idUsuario) REFERENCES usuarios(idUsuario)
+  
 );
 
